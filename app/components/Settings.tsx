@@ -6,12 +6,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
+import { useNavigate } from 'react-router';
 
 interface SettingsProps {
   onNavigate: (view: string) => void;
 }
 
-export const Settings = ({ onNavigate }: SettingsProps) => {
+export const Settings = () => {
   const [geminiKey, setGeminiKey] = useState('');
   const [imagen3Key, setImagen3Key] = useState('');
   const [veoKey, setVeoKey] = useState('');
@@ -35,13 +36,15 @@ export const Settings = ({ onNavigate }: SettingsProps) => {
     }));
   };
 
+  const navigate = useNavigate()
+
   return (
     <div className="h-full overflow-auto bg-slate-950">
       <div className="p-8">
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => onNavigate('dashboard')}
+          onClick={() => navigate('dashboard')}
           className="text-slate-400 hover:text-white hover:bg-slate-800 mb-4"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />

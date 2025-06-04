@@ -4,12 +4,13 @@ import { ArrowLeft, Play, Pause, SkipBack, SkipForward, Volume2, Settings, Downl
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
+import { useNavigate } from 'react-router';
 
 interface VideoEditorProps {
   onNavigate: (view: string) => void;
 }
 
-export const VideoEditor = ({ onNavigate }: VideoEditorProps) => {
+export const VideoEditor = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState([0]);
   const [volume, setVolume] = useState([50]);
@@ -21,6 +22,7 @@ export const VideoEditor = ({ onNavigate }: VideoEditorProps) => {
     { id: 3, type: 'video', name: 'Scene 3', duration: 6, start: 9, color: 'bg-purple-500' },
     { id: 4, type: 'audio', name: 'Background Music', duration: 15, start: 0, color: 'bg-yellow-500' },
   ];
+  const navigate = useNavigate()
 
   return (
     <div className="h-full overflow-auto bg-slate-950">
@@ -28,7 +30,7 @@ export const VideoEditor = ({ onNavigate }: VideoEditorProps) => {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => onNavigate('dashboard')}
+          onClick={() => navigate('dashboard')}
           className="text-slate-400 hover:text-white hover:bg-slate-800 mb-4"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />

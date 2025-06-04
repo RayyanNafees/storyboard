@@ -27,9 +27,9 @@ const Index = () => {
       case 'my-stories':
         return <MyStories onNavigate={setActiveView} currentStory={currentStory} />;
       case 'video-editor':
-        return <VideoEditor onNavigate={setActiveView} />;
+        return <VideoEditor />;
       case 'settings':
-        return <Settings onNavigate={setActiveView} />;
+        return <Settings  />;
       default:
         return <Dashboard onNavigate={setActiveView} currentStory={currentStory} setCurrentStory={setCurrentStory} />;
     }

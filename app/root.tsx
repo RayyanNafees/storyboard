@@ -6,9 +6,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+// import process from "node:process";
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import './styles.css'
+import mongoose from "mongoose";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -22,6 +25,8 @@ export const links: Route.LinksFunction = () => [
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
 ];
+
+
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -86,3 +91,10 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     </main>
   );
 }
+
+const { MONGO_URI } = process.env
+if (!MONGO_URI) {
+  console.error("MONGO_URI is not defined", {MONGO_URI})
+}
+
+mongoose.connect(process.env.MONGO_URI as string).then((db) => console.log("MongoDB connected", db.connection.port))

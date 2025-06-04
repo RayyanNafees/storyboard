@@ -2,6 +2,7 @@
 import { Plus, Sparkles, BookOpen, Users, Film, Play, Edit3 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { useLoaderData } from 'react-router';
 
 interface DashboardProps {
   onNavigate: (view: string) => void;
@@ -9,32 +10,34 @@ interface DashboardProps {
   setCurrentStory: (story: any) => void;
 }
 
+
 export const Dashboard = ({ onNavigate, currentStory, setCurrentStory }: DashboardProps) => {
+  const data = useLoaderData()
   const recentProjects = [
-    { 
+    {
       id: 1,
-      type: 'story', 
-      title: 'The Last Explorer', 
+      type: 'story',
+      title: 'The Last Explorer',
       description: 'A space explorer discovers an ancient alien civilization',
-      scenes: 8, 
+      scenes: 8,
       status: 'complete',
       genre: 'Sci-Fi'
     },
-    { 
+    {
       id: 2,
-      type: 'story', 
-      title: 'Cyber Revolution', 
+      type: 'story',
+      title: 'Cyber Revolution',
       description: 'A detective uncovers a conspiracy in a cyberpunk city',
-      scenes: 6, 
+      scenes: 6,
       status: 'in-progress',
       genre: 'Cyberpunk'
     },
-    { 
+    {
       id: 3,
-      type: 'story', 
-      title: 'Ocean Mysteries', 
+      type: 'story',
+      title: 'Ocean Mysteries',
       description: 'An underwater kingdom facing an environmental crisis',
-      scenes: 4, 
+      scenes: 4,
       status: 'draft',
       genre: 'Fantasy'
     },
@@ -50,7 +53,7 @@ export const Dashboard = ({ onNavigate, currentStory, setCurrentStory }: Dashboa
       <div className="p-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">
-            Welcome to your Creative Studio
+            Welcome to your Creative Studio {JSON.stringify(data)}
           </h1>
           <p className="text-xl text-slate-400">
             Transform your stories into stunning videos with AI
@@ -100,8 +103,8 @@ export const Dashboard = ({ onNavigate, currentStory, setCurrentStory }: Dashboa
               <CardContent>
                 <div className="space-y-3">
                   {recentProjects.map((story) => (
-                    <div 
-                      key={story.id} 
+                    <div
+                      key={story.id}
                       onClick={() => handleStoryClick(story)}
                       className="flex items-center justify-between p-4 rounded-lg bg-slate-800/30 border border-slate-700 hover:bg-slate-800/50 cursor-pointer transition-all"
                     >
